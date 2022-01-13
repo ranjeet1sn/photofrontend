@@ -1,22 +1,7 @@
-<div
-  *ngIf="apiCalling"
-  style="position: absolute; top: 50%; left: 50%; z-index: 99999"
->
-  <img
-    src="../../../../assets/Fading circles.gif"
-    style="height: 38px; width: 73px"
-  />
+<div *ngIf="apiCalling" class="loader">
+  <img src="../../../../assets/Fading circles.gif" />
 </div>
-<div
-  *ngIf="errorMessage"
-  style="
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    right: 20px;
-    top: 10px;
-  "
->
+<div *ngIf="errorMessage" class="error-message">
   <div class="alert alert-danger" style="width: fit-content" role="alert">
     {{ errorMessage }}
   </div>

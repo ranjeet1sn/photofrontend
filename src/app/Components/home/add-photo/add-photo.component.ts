@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PhotoService } from 'src/app/services/photo.service';
-
+export interface description {
+  word: string;
+  allocation: number;
+}
 @Component({
   selector: 'app-add-photo',
   templateUrl: './add-photo.component.html',
@@ -13,7 +16,7 @@ export class AddPhotoComponent implements OnInit {
   apiCalling: boolean = false;
   errorMessage = '';
   id = '';
-  descrptionArray = [
+  descrptionArray: description[] = [
     {
       word: '',
       allocation: 0,
@@ -126,7 +129,7 @@ export class AddPhotoComponent implements OnInit {
     }, 1500);
   }
 
-  valueChange(value) {
+  valueChange() {
     this.total = 0;
     this.descrptionArray.forEach((ele) => {
       this.total += Number(ele.allocation);
