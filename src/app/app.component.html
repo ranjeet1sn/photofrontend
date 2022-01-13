@@ -45,13 +45,22 @@
       >
         <div
           class="bg-white py-2 collapse-inner rounded"
-          style="height: 141px; font-size:15px"
+          style="height: 141px; font-size: 15px"
         >
           <h6 class="collapse-header">Services Photos:</h6>
-          <a class="collapse-item active" href="all-service-photo.html"
+          <a
+            class="collapse-item active"
+            [routerLinkActiveOptions]="{exact: true}"
+            routerLink="/"
+            routerLinkActive="active-item"
             >All Photos</a
           >
-          <a class="collapse-item" routerLink="/add">Add New Service Photo</a>
+          <a
+            class="collapse-item"
+            routerLink="/add"
+            routerLinkActive="active-item"
+            >Add New Service Photo</a
+          >
         </div>
       </div>
     </li>
@@ -82,7 +91,11 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow" (click)="logout()">
+            <li
+              class="nav-item dropdown no-arrow"
+              style="cursor: pointer"
+              (click)="logout()"
+            >
               Logout
             </li>
           </ul>
