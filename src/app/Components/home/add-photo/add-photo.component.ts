@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PhotoService } from 'src/app/services/photo.service';
+
 export interface description {
   word: string;
   allocation: number;
 }
+
 @Component({
   selector: 'app-add-photo',
   templateUrl: './add-photo.component.html',
@@ -23,7 +25,8 @@ export class AddPhotoComponent implements OnInit {
     },
   ];
   total: number = 0;
-  image: any;
+  image: any = '';
+
   constructor(
     private photoService: PhotoService,
     private route: ActivatedRoute,
@@ -122,6 +125,7 @@ export class AddPhotoComponent implements OnInit {
       );
     }
   }
+
   setMessage(message) {
     this.errorMessage = message;
     setTimeout(() => {
