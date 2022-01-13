@@ -1,0 +1,154 @@
+<div
+  *ngIf="apiCalling"
+  style="position: absolute; top: 50%; left: 50%; z-index: 99999"
+>
+  <img
+    src="../../../../assets/Fading circles.gif"
+    style="height: 38px; width: 73px"
+  />
+</div>
+<div
+  *ngIf="errorMessage"
+  style="
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 20px;
+    top: 10px;
+  "
+>
+  <div class="alert alert-danger" style="width: fit-content" role="alert">
+    {{ errorMessage }}
+  </div>
+</div>
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Photo of services</h1>
+  </div>
+  <!-- DataTales Example -->
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card shadow mb-4">
+        <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+        >
+          <h6 class="m-0 font-weight-bold text-primary">
+            Service photo with style Representation
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <img
+                *ngIf="!image"
+                src="https://dummyimage.com/240x371/8f6a8f/fff.png"
+                class="img-thumbnail"
+              />
+              <img *ngIf="image" [src]="image" class="img-thumbnail" />
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8">
+              <div class="mt-2">
+                <input
+                  type="file"
+                  (change)="onFileCHange($event)"
+                  style="display: none"
+                  #file
+                />
+                <button class="btn btn-primary mt-1" (click)="file.click()">
+                  Change Photo
+                </button>
+                <button
+                  (click)="image = ''"
+                  class="btn btn-outline-primary mt-1"
+                >
+                  Remove Photo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="card shadow mb-4">
+        <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+        >
+          <h6 class="m-0 font-weight-bold text-primary">
+            What this photo represents?
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th>Word</th>
+                  <th>% Allocation</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <td></td>
+                  <td><strong>Total %</strong></td>
+                  <td>{{ total }}</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr *ngFor="let items of descrptionArray; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    <input
+                      [(ngModel)]="items.word"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      [(ngModel)]="items.allocation"
+                      class="form-control"
+                      type="number"
+                      max="100"
+                      (change)="valueChange()"
+                      maxlength="100"
+                    />
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm">
+                      <i class="fas fa-times-circle" (click)="remove(i)"
+                        >Remove</i
+                      >
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-info float-right" (click)="addMore()">
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <button
+            class="btn btn-primary float-right"
+            [disabled]="total < 100 || total > 100"
+            (click)="submit()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

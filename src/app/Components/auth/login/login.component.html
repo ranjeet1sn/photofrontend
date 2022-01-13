@@ -1,0 +1,74 @@
+<div
+  *ngIf="errorMessage"
+  style="
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 20px;
+    top: 10px;
+  "
+>
+  <div class="alert alert-danger" style="width: fit-content" role="alert">
+    {{ errorMessage }}
+  </div>
+</div>
+<div
+  *ngIf="apiCalling"
+  style="position: absolute; top: 50%; left: 50%; z-index: 99999"
+>
+  <img
+    src="../../../../assets/Fading circles.gif"
+    style="height: 38px; width: 73px"
+  />
+</div>
+<div
+  class="container"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    font-size: 20px;
+  "
+>
+  <div class="card" style="width: 300px">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <span
+            *ngIf="
+              loginForm.controls.email.touched &&
+              loginForm.controls.email.hasError('required')
+            "
+            >Email is required</span
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+          <span
+            *ngIf="
+              loginForm.controls.password.touched &&
+              loginForm.controls.password.hasError('required')
+            "
+            >Passsword is required</span
+          >
+        </div>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="btn btn-primary"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
