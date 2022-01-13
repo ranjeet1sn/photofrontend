@@ -34,6 +34,9 @@ export class AddPhotoComponent implements OnInit {
         this.photoForm.controls.image.setValue(res.data.image);
         this.image = res.data.image;
         this.descrptionArray = res.data.description;
+        this.descrptionArray.forEach((ele) => {
+          this.total += ele.allocation;
+        });
       });
     }
     this.photoForm = new FormGroup({
